@@ -50,4 +50,53 @@ const getAllBookCovers = (req, res) => {
 
 } 
 
-module.exports = { getAll, getpovCharacters, getAllBookCovers };
+const getAllCharacters = (req, res) => {
+    fetch('https://anapioficeandfire.com/api/books/')
+    .then(response => response.json())
+    .then(books => {
+
+        const charactersLinks = books.flatMap(book => book.characters )
+        const charactersUnique = [...new Set(charactersLinks)]
+
+        const promises = charactersUnique.map(url => fetch(url).then(response => response.json()))
+        Promise.all(promises).then(responses => res.send(responses))
+    })
+}
+
+
+const getCharactersById = (req, res) => {
+    fetch('https://anapioficeandfire.com/api/books/')
+    .then(response => response.json())
+    .then(books => {
+
+        const id = req.params.id
+        const bookscharacters = books.flatMap(book => book.characters)
+        const booksId = bookscharacters.find(link => link.endsWith('/' + id))
+
+        if(!booksId) {
+            res.status(404).send("character does not exist")
+        }
+
+        fetch(booksId)
+        .then(booksId => booksId.json())
+        .then(booksId => res.send(booksId))
+
+        
+    })
+
+}
+
+const getBooksByCharacter = (req, res) => {
+    fetch('https://anapioficeandfire.com/api/books/')
+    .then(response => response.json())
+    .then(book => {
+
+        const character = req.params.characters.name
+        
+    })
+
+
+
+}
+module.exports = { getAll, getpovCharacters, getAllBookCovers, getAllCharacters, getCharactersById, getBooksByCharacter };
+
