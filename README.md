@@ -20,7 +20,7 @@
 ### Rotas:
 
 ```
-- http://localhost:8080/povCharacters
+- [ ] http://localhost:8080/povCharacters
 
 Todos os personagens de povCharacters serão retornados com essa rota.
 
@@ -81,7 +81,7 @@ Todos os personagens de povCharacters serão retornados com essa rota.
 ```
 
 ```
-- http://localhost:8080/bookCovers
+- [ ] http://localhost:8080/bookCovers
 
 Nessa rota teremos as capas de todos os livros.
 
@@ -92,7 +92,7 @@ Nessa rota teremos as capas de todos os livros.
 ```
 
 ```
- - http://localhost:8080/characters
+- [ ] http://localhost:8080/characters
 
 Nessa rota teremos todos os personagens como retorno.
 
@@ -124,7 +124,7 @@ Nessa rota teremos todos os personagens como retorno.
 
 ```
 
-- http://localhost:8080/search_character/:id
+- [ ] http://localhost:8080/search_character/:id
 
 Essa rota retornará as informações do personagem através Id passado na requisição.
 
@@ -171,7 +171,7 @@ Essa rota retornará as informações do personagem através Id passado na requi
 
 ```
 
-- http://localhost:8080/search_books/:id
+- [ ] http://localhost:8080/search_books/:id
 
 Nessa requisição será retornado os livros que o personagem faz parte. Usamos o id para realizar a pesquisa.
 
