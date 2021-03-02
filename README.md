@@ -171,7 +171,7 @@ Essa rota retornará as informações do personagem através Id passado na requi
 
 ```
 
- - [ ] http://localhost:8080/search_books/:id
+ - [] http://localhost:8080/search_books/:id
 
 Nessa requisição será retornado os livros que o personagem faz parte. Usamos o id para realizar a pesquisa.
 
