@@ -1,15 +1,6 @@
 const { response } = require('express');
 const fetch = require('node-fetch');
-const FileReader = require('filereader')
-const books = require("../model/iceAndFire");
-
-
-const getAll = (req, res) => {
-    console.log(req.url)
-
-
-    res.send(books)
-};
+const FileReader = require('filereader');
 
 const getpovCharacters = (req, res) => {
     fetch('https://anapioficeandfire.com/api/books/')
@@ -22,8 +13,8 @@ const getpovCharacters = (req, res) => {
         const promises = povCharactersUnique.map(url => fetch(url).then(response => response.json()))
         Promise.all(promises).then(responses => res.send(responses))
     })
-
 }
+
 
 const getAllBookCovers = (req, res) => {
     fetch('https://anapioficeandfire.com/api/books/')
@@ -33,22 +24,11 @@ const getAllBookCovers = (req, res) => {
         const isbnNumbers = books.map(book => book.isbn.split("-").join(""))
 
 
-        const promises = isbnNumbers.map(value => fetch(`http://covers.openlibrary.org/a/isbn/${value}-M.jpg`).then(response => response.blob()).then(convertBlobToBase64))
+        const promises = isbnNumbers.map(value => fetch(`http://covers.openlibrary.org/a/isbn/${value}-M.jpg`))
         Promise.all(promises).then(responses => res.send(responses))
-
     })
-
-    const convertBlobToBase64 = blob => new Promise((resolve, reject) => {
-        const reader = new FileReader;
-        reader.onerror = reject;
-        reader.onload = () => {
-            resolve(reader.result);
-        };
-        reader.readAsDataURL(blob);
-    });
-    
-
 } 
+
 
 const getAllCharacters = (req, res) => {
     fetch('https://anapioficeandfire.com/api/books/')
@@ -80,23 +60,38 @@ const getCharactersById = (req, res) => {
         fetch(booksId)
         .then(booksId => booksId.json())
         .then(booksId => res.send(booksId))
-
-        
     })
-
 }
+
 
 const getBooksByCharacter = (req, res) => {
     fetch('https://anapioficeandfire.com/api/books/')
     .then(response => response.json())
-    .then(book => {
+    .then(books => {
 
-        const character = req.params.characters.name
-        
+        const id = req.params.id
+        const booksCharacters = books.filter(book => book.characters.some(link => link.endsWith('/'+id)))
+
+        if(booksCharacters.length === 0){
+            res.status(404).send("character does not exist")
+        }
+        res.status(200).send(booksCharacters)
     })
-
-
-
 }
-module.exports = { getAll, getpovCharacters, getAllBookCovers, getAllCharacters, getCharactersById, getBooksByCharacter };
+module.exports = { getpovCharacters, getAllBookCovers, getAllCharacters, getCharactersById, getBooksByCharacter };
 
+
+
+
+
+// const promises = isbnNumbers.map(value => fetch(`http://covers.openlibrary.org/a/isbn/${value}-M.jpg`).then(response => response.blob()).then(convertBlobToBase64))
+// Promise.all(promises).then(responses => res.send(responses))
+
+// const convertBlobToBase64 = blob => new Promise((resolve, reject) => {
+//     const reader = new FileReader;
+//     reader.onerror = reject;
+//     reader.onload = () => {
+//         resolve(reader.result);
+//     };
+//     reader.readAsDataURL(blob);
+// });
