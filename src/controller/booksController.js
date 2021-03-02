@@ -20,9 +20,7 @@ const getAllBookCovers = (req, res) => {
     fetch('https://anapioficeandfire.com/api/books/')
     .then(response => response.json())
     .then(books => {
-
         const isbnNumbers = books.map(book => book.isbn.split("-").join(""))
-
 
         const promises = isbnNumbers.map(value => fetch(`http://covers.openlibrary.org/a/isbn/${value}-M.jpg`))
         Promise.all(promises).then(responses => res.send(responses))
