@@ -15,7 +15,7 @@
 - filereader
 - node-fetch
 
-## Books
+## Books:
 
 ### Rotas:
 
@@ -81,7 +81,7 @@ Todos os personagens de povCharacters serão retornados com essa rota.
 ```
 
 ```
-http://localhost:8080/bookCovers
+- http://localhost:8080/bookCovers
 
 Nessa rota teremos as capas de todos os livros.
 
@@ -122,7 +122,9 @@ Nessa rota teremos todos os personagens como retorno.
 
 ```
 
-http://localhost:8080/search_character/:id
+```
+
+- http://localhost:8080/search_character/:id
 
 Essa rota retornará as informações do personagem através Id passado na requisição.
 
@@ -164,6 +166,8 @@ Essa rota retornará as informações do personagem através Id passado na requi
         "Kristian Nairn"
     ]
 }
+
+```
 
 ```
 
