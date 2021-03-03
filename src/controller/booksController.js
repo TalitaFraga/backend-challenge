@@ -1,6 +1,7 @@
 const { response } = require('express');
 const fetch = require('node-fetch');
 const FileReader = require('filereader');
+const imageToBase64 = require('image-to-base64');
 
 const getpovCharacters = (req, res) => {
     fetch('https://anapioficeandfire.com/api/books/')
@@ -19,13 +20,21 @@ const getpovCharacters = (req, res) => {
 const getAllBookCovers = (req, res) => {
     fetch('https://anapioficeandfire.com/api/books/')
     .then(response => response.json())
-    .then(books => {
+    .then(async (books) => {
         const isbnNumbers = books.map(book => book.isbn.split("-").join(""))
 
-        const promises = isbnNumbers.map(value => fetch(`http://covers.openlibrary.org/a/isbn/${value}-M.jpg`))
-        Promise.all(promises).then(responses => res.send(responses))
+        let converted = []
+
+        for(const value of isbnNumbers){
+            await imageToBase64(`http://covers.openlibrary.org/b/isbn/${value}-M.jpg`)
+            .then((response) => converted.push(response))
+            .catch(
+                (error) => {
+                    console.log(error)
+                })
+        }
     })
-} 
+}
 
 
 const getAllCharacters = (req, res) => {
@@ -68,14 +77,11 @@ module.exports = { getpovCharacters, getAllBookCovers, getAllCharacters, getChar
 
 
 
-// const promises = isbnNumbers.map(value => fetch(`http://covers.openlibrary.org/a/isbn/${value}-M.jpg`).then(response => response.blob()).then(convertBlobToBase64))
+// const promises = isbnNumbers.map(value => {imageToBase64(`http://covers.openlibrary.org/b/isbn/${value}-M.jpg`)
+// .then((response) => response)
+// .catch(
+//     (error) => {
+//         console.log(error);
+//     }
+// )})
 // Promise.all(promises).then(responses => res.send(responses))
-
-// const convertBlobToBase64 = blob => new Promise((resolve, reject) => {
-//     const reader = new FileReader;
-//     reader.onerror = reject;
-//     reader.onload = () => {
-//         resolve(reader.result);
-//     };
-//     reader.readAsDataURL(blob);
-// });
