@@ -84,7 +84,7 @@ Nessa rota todos os personagens que tem point of view nos livros são retornados
 
 ### Rota das Capas dos Livros:
 
-Nessa rota teresmos as capas de todos os livros.
+Nessa rota teremos as capas de todos os livros.
 
 ```
  - http://localhost:8080/booksCovers
@@ -183,7 +183,7 @@ Nessa rota passaremos o id na requisição e teremos como retorno todos os livro
 ```
 
  - http://localhost:8080/search_books/:id
- 
+
 [
     {
         "url": "https://anapioficeandfire.com/api/books/2",
