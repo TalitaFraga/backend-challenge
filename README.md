@@ -82,20 +82,24 @@ Nessa rota todos os personagens que tem point of view nos livros são retornados
     }
 ```
 
-```
- - http://localhost:8080/bookCovers
+### Rota das Capas dos Livros:
 
-Nessa rota teremos as capas de todos os livros.
+Nessa rota teresmos as capas de todos os livros.
+
+```
+ - http://localhost:8080/booksCovers
 
 [ 
     '/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAERALQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD8z7WZBbAMypICMjngdua1beBRkMIx6g+lZmWFuFZFQBMgsPm+v05q7bQ3t5p07wWk91HCBvlgiaTywOmSoIUj1NZs8acHN+6Z+oKVnbqQSWDYxnp/LpVZFBLls5IzkHgVdeSa7ROJJtuAGSMkjjjoKgaJo2AkVoyD91hhvpzTN43UUmRMo4yMMfT0qeyhEsijYXz/... 
 ]
 ```
 
+### Rota de todos os Personagens: 
+
+Nessa rota teremos todos os personagens de todos os livros.
+
 ```
  - http://localhost:8080/characters
-
-Nessa rota teremos todos os personagens como retorno.
 
 {
         "url": "https://anapioficeandfire.com/api/books/1",
@@ -123,11 +127,13 @@ Nessa rota teremos todos os personagens como retorno.
 
 ```
 
+### Rota de um personagem:
+
+Nessa rota usaremos o id na requisição e teremos como retorno o persogem que contem esse id.
+
 ```
 
  - http://localhost:8080/search_character/:id
-
-Essa rota retornará as informações do personagem através Id passado na requisição.
 
 {
     "url": "https://www.anapioficeandfire.com/api/characters/2",
@@ -170,12 +176,14 @@ Essa rota retornará as informações do personagem através Id passado na requi
 
 ```
 
+### Rotas de livros:
+
+Nessa rota passaremos o id na requisição e teremos como retorno todos os livros que esse personagem faz parte.
+
 ```
 
  - http://localhost:8080/search_books/:id
-
-Nessa requisição será retornado os livros que o personagem faz parte. Usamos o id para realizar a pesquisa.
-
+ 
 [
     {
         "url": "https://anapioficeandfire.com/api/books/2",
