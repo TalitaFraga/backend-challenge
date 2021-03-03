@@ -33,32 +33,17 @@ const getAllCharacters = (req, res) => {
     .then(response => response.json())
     .then(characters => {
 
-        // const charactersLinks = books.flatMap(book => book.characters )
-        // const charactersUnique = [...new Set(charactersLinks)]
-
-        // const promises = charactersUnique.map(url => fetch(url).then(response => response.json()))
-        // Promise.all(promises).then(responses => res.send(responses))
         res.send(characters)
     })
 }
 
 
 const getCharactersById = (req, res) => {
-    fetch('https://anapioficeandfire.com/api/books/')
+    fetch('https://anapioficeandfire.com/api/characters/' + req.params.id)
     .then(response => response.json())
-    .then(books => {
+    .then(character => {
 
-        const id = req.params.id
-        const bookscharacters = books.flatMap(book => book.characters)
-        const booksId = bookscharacters.find(link => link.endsWith('/' + id))
-
-        if(!booksId) {
-            res.status(404).send("character does not exist")
-        }
-
-        fetch(booksId)
-        .then(booksId => booksId.json())
-        .then(booksId => res.send(booksId))
+        res.send(character)
     })
 }
 
