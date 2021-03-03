@@ -29,15 +29,16 @@ const getAllBookCovers = (req, res) => {
 
 
 const getAllCharacters = (req, res) => {
-    fetch('https://anapioficeandfire.com/api/books/')
+    fetch('https://anapioficeandfire.com/api/characters/')
     .then(response => response.json())
-    .then(books => {
+    .then(characters => {
 
-        const charactersLinks = books.flatMap(book => book.characters )
-        const charactersUnique = [...new Set(charactersLinks)]
+        // const charactersLinks = books.flatMap(book => book.characters )
+        // const charactersUnique = [...new Set(charactersLinks)]
 
-        const promises = charactersUnique.map(url => fetch(url).then(response => response.json()))
-        Promise.all(promises).then(responses => res.send(responses))
+        // const promises = charactersUnique.map(url => fetch(url).then(response => response.json()))
+        // Promise.all(promises).then(responses => res.send(responses))
+        res.send(characters)
     })
 }
 
