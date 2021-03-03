@@ -19,10 +19,12 @@
 
 ### Rotas:
 
-```
- - http://localhost:8080/povCharacters
+### Rota de povCharacters:
 
-Todos os personagens de povCharacters serão retornados com essa rota.
+Nessa rota todos os personagens que tem point of view nos livros são retornados.
+
+``` 
+ - http://localhost:8080/povCharacters
 
 {
         "url": "https://www.anapioficeandfire.com/api/characters/148",
