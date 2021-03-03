@@ -41,7 +41,6 @@ const getAllCharacters = (req, res) => {
     fetch('https://anapioficeandfire.com/api/characters/')
     .then(response => response.json())
     .then(characters => {
-
         res.send(characters)
     })
 }
@@ -51,7 +50,6 @@ const getCharactersById = (req, res) => {
     fetch('https://anapioficeandfire.com/api/characters/' + req.params.id)
     .then(response => response.json())
     .then(character => {
-
         res.send(character)
     })
 }
@@ -76,12 +74,3 @@ module.exports = { getpovCharacters, getAllBookCovers, getAllCharacters, getChar
 
 
 
-
-// const promises = isbnNumbers.map(value => {imageToBase64(`http://covers.openlibrary.org/b/isbn/${value}-M.jpg`)
-// .then((response) => response)
-// .catch(
-//     (error) => {
-//         console.log(error);
-//     }
-// )})
-// Promise.all(promises).then(responses => res.send(responses))
